@@ -1,9 +1,8 @@
-package SimpleAssemblerInterpreter
-
+import SimpleAssemblerInterpreter.interpret
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
-class SolutionTest {
+class SimpleAssemblerInterpreterTest {
 
     @Test
     fun simple1() {

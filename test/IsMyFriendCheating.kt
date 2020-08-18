@@ -1,7 +1,6 @@
-package IsMyFriendCheating
-
+import IsMyFriendCheating.RemovedNumbers
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class  RemovedNumbersTest {
 

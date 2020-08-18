@@ -1,5 +1,4 @@
-package MoleculeToAtoms
-
+import MoleculeToAtoms.getAtoms
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName
@@ -11,7 +10,7 @@ import java.util.stream.Stream
 
 
 @DisplayName("Count the number of atoms of each element contained in the molecule")
-class SolutionTest() {
+class MoleculeToAtomsTest() {
     @DisplayName("Should calculate the correct count of atoms of elements")
     @ParameterizedTest(name = "molecule:{0} = {1} => {2}")
     @MethodSource("formulaProvider")
@@ -21,7 +20,7 @@ class SolutionTest() {
             ?.map { it.split("=").let { it[0] to it[1].toInt() } }
             ?.toMap()
         if (ex == null) {
-            val except = assertThrows<IllegalArgumentException>{getAtoms(formula)}
+            val except = assertThrows<IllegalArgumentException>{ getAtoms(formula) }
             assertTrue(except.message!!.contains(formula))
         } else {
             val res = getAtoms(formula)

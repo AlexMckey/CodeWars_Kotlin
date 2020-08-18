@@ -1,7 +1,6 @@
-package SpeedControl
-
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import speedControl.gps
 
 class GpsSpeedTest {
     @Test
@@ -14,9 +13,9 @@ class GpsSpeedTest {
 
     }
     companion object {
-        private fun randInt(min:Int, max:Int):Int {
-            return min + (Math.random() * ((max - min) + 1)).toInt()
-        }
+//        private fun randInt(min:Int, max:Int):Int {
+//            return min + (Math.random() * ((max - min) + 1)).toInt()
+//        }
         private fun testing(actual:Int, expected:Int) {
             assertEquals(expected, actual)
         }

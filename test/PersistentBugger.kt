@@ -1,6 +1,5 @@
-package PersistentBugger
-
-import kotlin.test.assertEquals
+import PersistentBugger.persistence
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class TestPersistence {

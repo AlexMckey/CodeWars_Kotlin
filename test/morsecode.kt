@@ -1,8 +1,10 @@
-package morsecode
-
 //import org.junit.jupiter.api.Assertions.assertEquals
+import morsecode.decodeBits
+import morsecode.decodeBitsAdvanced
+import morsecode.decodeMorse
+import morsecode.decodeRegexBits
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class DecodeTheMorseCodeTests {
     @Test

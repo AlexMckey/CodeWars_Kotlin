@@ -1,6 +1,5 @@
-package Mumbling
-
-import kotlin.test.assertEquals
+import Mumbling.accum
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class AccumulTest {

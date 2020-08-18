@@ -1,12 +1,11 @@
-package BuildAPileOfCubes
-
+import BuildAPileOfCubes.ASum
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class  ASumTest {
 
     private fun testing(n: Long, expected: Long) {
-        var actual = ASum.findNb(n)
+        val actual = ASum.findNb(n)
         assertEquals(expected, actual)
     }
     @Test
