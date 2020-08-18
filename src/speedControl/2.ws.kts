@@ -6,4 +6,4 @@ val s = 15
 fun toMH(delta_distance: Double, delta_time: Int): Double =
     (3600 * delta_distance) / delta_time
 
-x.toList().zipWithNext { a, b -> floor(toMH(b-a, s)) }.max()?.toInt()
+x.toList().zipWithNext { a, b -> floor(toMH(b-a, s)) }.maxOrNull()?.toInt()

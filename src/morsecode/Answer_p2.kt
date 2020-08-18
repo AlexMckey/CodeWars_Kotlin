@@ -26,7 +26,7 @@ private fun signalToMorseCode(signal: Pair<Char,Int>): String {
 fun decodeBits(bits: String): String {
     val preparedSignal = bits.dropWhile { it == '0' }.dropLastWhile { it == '0' }
     val rlePairs = rle(preparedSignal.drop(1), preparedSignal.first())
-    val rate = rlePairs.minBy { it.second }?.second ?: 1
+    val rate = rlePairs.minByOrNull { it.second }?.second ?: 1
     return rlePairs
         .map { it.first to it.second / rate }
         .joinToString("") { signalToMorseCode(it) }

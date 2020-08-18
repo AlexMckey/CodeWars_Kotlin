@@ -11,7 +11,7 @@ tailrec fun rle(rem: CharSequence, prev: Char, cnt: Int = 1, acc: List<Pair<Char
 }
 val res = rle(str.drop(1), str.first())
 res
-val period = res.minBy { it.second }?.second ?: 1
+val period = res.minByOrNull { it.second }?.second ?: 1
 val code = res.map { it.first to it.second / period }
 fun signalToMorseCode(signal: Pair<Char,Int>): String {
     return when (signal) {
