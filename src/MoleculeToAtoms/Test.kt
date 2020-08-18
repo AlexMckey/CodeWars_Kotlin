@@ -1,36 +1,45 @@
 package MoleculeToAtoms
 
-import kotlin.test.assertEquals
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.runners.Parameterized
-import org.junit.runners.Parameterized.Parameters
-//import java.util.*
-import kotlin.test.assertFailsWith
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
-@ExtendWith(Parameterized::class)
-class SolutionTest(atoms: List<String>, nums: List<Int>, private val formula: String, private val name: String) {
-    private val expected: Map<String, Int>
 
-    init {
-        val exp = HashMap<String, Int>()
-        for (i in atoms.indices) exp[atoms[i]] = nums[i]
-        this.expected = exp
-    }
-
-    @Test
-    fun testMolecule() {
-        if (expected.isEmpty()) assertFailsWith<IllegalArgumentException>(String.format("Your function should throw an IllegalArgumentException for a wrong formula: %s", formula)) {
-            getAtoms(formula)
-        } else assertEquals(String.format("Should parse %s: %s", name, formula), expected, getAtoms(formula))
+@DisplayName("Count the number of atoms of each element contained in the molecule")
+class SolutionTest() {
+    @DisplayName("Should calculate the correct count of atoms of elements")
+    @ParameterizedTest(name = "molecule:{0} = {1} => {2}")
+    @MethodSource("formulaProvider")
+    fun testMolecule(moleculaName: String, formula: String, expected: String?) {
+        val ex: Map<String, Int>? = expected
+            ?.split(",")
+            ?.map { it.split("=").let { it[0] to it[1].toInt() } }
+            ?.toMap()
+        if (ex == null) {
+            val except = assertThrows<IllegalArgumentException>{getAtoms(formula)}
+            assertTrue(except.message!!.contains(formula))
+        } else {
+            val res = getAtoms(formula)
+            ex.entries.forEach{
+                assertEquals(res[it.key],it.value)
+            }
+        }
     }
 
     companion object {
-        @Parameters
         @JvmStatic
-        fun data(): List<Array<out Any>> =
-            listOf(arrayOf(listOf("H", "O"), listOf(2, 1), "H2O", "water"),
-                arrayOf(listOf("B", "H"), listOf(2, 6), "B2H6", "dihydroboran"),
-                arrayOf(listOf("C", "H", "O"), listOf(6, 12, 6), "C6H12O6", "glucose"))
+        private fun formulaProvider(): Stream<Arguments?>? {
+            return Stream.of(
+                Arguments.of("Water", "H2O", "H=2,O=1"),
+                Arguments.of("MagnesiumHydroxide", "Mg(OH)2", "Mg=1,O=2,H=2"),
+                Arguments.of("FremySalt", "K4[ON(SO3)2]2", "K=4,O=14,N=2,S=4"),
+                Arguments.of("Error", "Mg{OH)2", null)
+            )
+        }
     }
 }
