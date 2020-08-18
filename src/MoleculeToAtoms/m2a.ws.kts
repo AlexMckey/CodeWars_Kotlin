@@ -25,12 +25,12 @@ r.findAll("Mg{OH)2").joinToString(""){it.value}
 r.findAll("K4[ON(SO3)2]2").joinToString(""){it.value}
 
 for (g in r.findAll("Mg{OH)2")){
-    if (g.groups["open"] != null) println("open:${g.groups["open"]!!.value}")
-    if (g.groups["close"] != null) println("close:${g.groups["close"]!!.value}")
-    if (g.groups["gcnt"] != null) println("gcnt:${g.groups["gcnt"]!!.value}")
-    if (g.groups["atom"] != null) {
-        print("atom:${g.groups["atom"]!!.value}")
-        if (g.groups["acnt"]!= null) println(g.groups["acnt"]!!.value)
+    if (g.groups[0] != null) println("open:${g.groups[0]!!.value}")
+    if (g.groups[3] != null) println("close:${g.groups[3]!!.value}")
+    if (g.groups[4] != null) println("gcnt:${g.groups[4]!!.value}")
+    if (g.groups[1] != null) {
+        print("atom:${g.groups[1]!!.value}")
+        if (g.groups[2]!= null) println(g.groups[2]!!.value)
         else println()
     }
 }
