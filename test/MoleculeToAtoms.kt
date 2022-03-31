@@ -17,8 +17,7 @@ class MoleculeToAtomsTest() {
     fun testMolecule(moleculaName: String, formula: String, expected: String?) {
         val ex: Map<String, Int>? = expected
             ?.split(",")
-            ?.map { it.split("=").let { it[0] to it[1].toInt() } }
-            ?.toMap()
+            ?.associate { it.split("=").let { it[0] to it[1].toInt() } }
         if (ex == null) {
             val except = assertThrows<IllegalArgumentException>{ getAtoms(formula) }
             assertTrue(except.message!!.contains(formula))
