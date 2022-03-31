@@ -1,4 +1,4 @@
-package speedControl
+package SpeedControl
 
 import kotlin.math.floor
 
